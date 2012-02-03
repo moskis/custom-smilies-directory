@@ -1,12 +1,12 @@
 Custom Smilies Directory
 ========================
 
-Contributors: moskis
-Tags: smilies, emoticons, smiley, pack, smilies pack, smiley pack, emoticon pack
-Requires at least: 2.8
-Tested up to: 3.3
-Stable tag: 1.1
-License: GPL/MIT
+- **Contributors:** moskis
+- **Tags:** smilies, emoticons, smiley, pack, smilies pack, smiley pack, emoticon pack
+- **Requires at least:** 2.8
+- **Tested up to:** 3.3
+- **Stable tag:** 1.1
+- **License:** GPL/MIT
 
 Light plugin that tells WordPress to load Smilies from your theme's directory. This allows you to use custom Smilies without loosing them when you update WordPress.
 
