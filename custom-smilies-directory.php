@@ -3,7 +3,7 @@
 Plugin Name: Custom Smilies Directory
 Plugin URI: http://plugins.josepardilla.com/custom-smilies-directory/
 Description: Light plugin that tells WordPress to load Smilies from your theme's directory. This allows you to use custom Smilies without loosing them when you update WordPress.
-Version: 1.1
+Version: 1.2
 Author: Jos&eacute; Pardilla
 Author URI: http://josepardilla.com/
 */
@@ -74,10 +74,13 @@ function jpm_convert_smilies($text) {
 
 /**
  * Main Hook
+ *
+ * @since 1.0
+ *
  */
 function jpm_custom_smilies_init() {
 	$smilies_path = STYLESHEETPATH . "/smilies/";
-  if( file_exists($smilies_path) ) {
+	if( file_exists($smilies_path) ) {
 		remove_filter( 'the_content', 'convert_smilies' );
 		remove_filter( 'the_excerpt', 'convert_smilies' );
 		remove_filter( 'comment_text', 'convert_smilies' );
@@ -101,8 +104,25 @@ add_action( 'init', 'jpm_custom_smilies_init' );
  *
  */
 function jpm_convert_smilies_warning() {
-  echo '<div id="jpm-convert-smilies-warning" class="error"><p><strong>Custom Smilies Directory needs your attenttion:</strong> \'/smilies/\' directory not found in the current theme. You have to upload your new smilies to your theme directory for them to work!</p></div>';
+	echo '<div id="jpm-convert-smilies-warning" class="error"><p><strong>';
+	_e( 'Custom Smilies Directory needs your attenttion:', 'jpm_csd' );
+	echo '</strong> ';
+	_e( '<code>/smilies/</code> directory not found in the current theme. You have to upload your new smilies to your theme directory for them to work!', 'jpm_csd' );
+	echo '</p></div>';
+	
 }
+
+
+/**
+ * Load textdomain
+ *
+ * @since 1.2
+ *
+ */
+function jpm_custom_smilies_textdomain() {
+	load_plugin_textdomain( 'jpm_csd', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+}
+add_action('init', 'jpm_custom_smilies_textdomain');
 
 
 ?>
