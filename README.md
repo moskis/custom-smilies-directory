@@ -27,8 +27,6 @@ You can find many pack in the Internet, by googling for them or searching on sit
 Changelog
 ---------
 
-This changelog is for the WordPress plugin. For the Fancybox main changelog go to its [home page](http://fancybox.net/changelog/).
-
 ### 1.2
 * Localization support and Spanish localization added.
 
