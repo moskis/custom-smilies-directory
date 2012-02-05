@@ -4,8 +4,8 @@ Custom Smilies Directory
 - **Contributors:** moskis
 - **Tags:** smilies, emoticons, smiley, pack, smilies pack, smiley pack, emoticon pack
 - **Requires at least:** 2.8
-- **Tested up to:** 3.3
-- **Stable tag:** 1.1
+- **Tested up to:** 3.3.1
+- **Stable tag:** 1.2
 - **License:** GPL/MIT
 
 Light plugin that tells WordPress to load Smilies from your theme's directory. This allows you to use custom Smilies without loosing them when you update WordPress.
@@ -28,6 +28,9 @@ Changelog
 ---------
 
 This changelog is for the WordPress plugin. For the Fancybox main changelog go to its [home page](http://fancybox.net/changelog/).
+
+### 1.2
+* Localization support and Spanish localization added.
 
 ### 1.1
 * Plugin now checks that the smilies folder exists in the active theme. If it doesn't, it loads the default WordPress smilies and shows an error notice in the admin panel letting the user know he has to upload the smilies to the theme directory.
