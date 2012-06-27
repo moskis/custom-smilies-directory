@@ -9,6 +9,7 @@ Author URI: http://josepardilla.com/
 */
 
 
+
 /**
  * Convert one smiley code to the icon graphic file equivalent.
  *
@@ -20,8 +21,10 @@ Author URI: http://josepardilla.com/
  *
  * @param string $smiley Smiley code to convert to image.
  * @return string Image string for smiley.
+ *
  */
-function jpm_translate_smiley($smiley) {
+
+function jpm_translate_smiley( $smiley ) {
 	global $wpsmiliestrans;
 
 	if ( count($smiley) == 0 ) {
@@ -38,6 +41,7 @@ function jpm_translate_smiley($smiley) {
 }
 
 
+
 /**
  * Convert text equivalent of smilies to images.
  *
@@ -49,18 +53,20 @@ function jpm_translate_smiley($smiley) {
  *
  * @param string $text Content to convert smilies from text.
  * @return string Converted content with text smilies replaced with images.
+ *
  */
-function jpm_convert_smilies($text) {
+
+function jpm_convert_smilies( $text ) {
 	global $wp_smiliessearch;
 	$output = '';
 	if ( get_option('use_smilies') && !empty($wp_smiliessearch) ) {
 		// HTML loop taken from texturize function, could possible be consolidated
-		$textarr = preg_split("/(<.*>)/U", $text, -1, PREG_SPLIT_DELIM_CAPTURE); // capture the tags as well as in between
-		$stop = count($textarr);// loop stuff
-		for ($i = 0; $i < $stop; $i++) {
+		$textarr = preg_split( "/(<.*>)/U", $text, -1, PREG_SPLIT_DELIM_CAPTURE ); // capture the tags as well as in between
+		$stop = count( $textarr );// loop stuff
+		for ( $i = 0; $i < $stop; $i++ ) {
 			$content = $textarr[$i];
-			if ((strlen($content) > 0) && ('<' != $content[0])) { // If it's not a tag
-				$content = preg_replace_callback($wp_smiliessearch, 'jpm_translate_smiley', $content);
+			if ( (strlen($content) > 0 ) && ( '<' != $content[0]) ) { // If it's not a tag
+				$content = preg_replace_callback( $wp_smiliessearch, 'jpm_translate_smiley', $content );
 			}
 			$output .= $content;
 		}
@@ -72,15 +78,17 @@ function jpm_convert_smilies($text) {
 }
 
 
+
 /**
  * Main Hook
  *
  * @since 1.0
  *
  */
+
 function jpm_custom_smilies_init() {
 	$smilies_path = STYLESHEETPATH . "/smilies/";
-	if( file_exists($smilies_path) ) {
+	if ( file_exists($smilies_path) ) {
 		remove_filter( 'the_content', 'convert_smilies' );
 		remove_filter( 'the_excerpt', 'convert_smilies' );
 		remove_filter( 'comment_text', 'convert_smilies' );
@@ -88,29 +96,32 @@ function jpm_custom_smilies_init() {
 		add_filter( 'the_excerpt', 'jpm_convert_smilies' );
 		add_filter( 'comment_text', 'jpm_convert_smilies' );
 	} else {
-		add_action('admin_notices','jpm_convert_smilies_warning');
+		add_action( 'admin_notices', 'jpm_convert_smilies_warning' );
 	}
 }
 add_action( 'init', 'jpm_custom_smilies_init' );
 
 
+
 /**
  * Check for smilies directory in theme
- * 
+ *
  * Will check that the smilies directory exists in the theme, and if it doesn't
  * show an admin panel error to let the user know.
  *
  * @since 1.1
  *
  */
+
 function jpm_convert_smilies_warning() {
 	echo '<div id="jpm-convert-smilies-warning" class="error"><p><strong>';
 	_e( 'Custom Smilies Directory needs your attenttion:', 'jpm_csd' );
 	echo '</strong> ';
 	_e( '<code>/smilies/</code> directory not found in the current theme. You have to upload your new smilies to your theme directory for them to work!', 'jpm_csd' );
 	echo '</p></div>';
-	
+
 }
+
 
 
 /**
@@ -119,10 +130,8 @@ function jpm_convert_smilies_warning() {
  * @since 1.2
  *
  */
+
 function jpm_custom_smilies_textdomain() {
 	load_plugin_textdomain( 'jpm_csd', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 }
-add_action('init', 'jpm_custom_smilies_textdomain');
-
-
-?>
+add_action( 'init', 'jpm_custom_smilies_textdomain' );
