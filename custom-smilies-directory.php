@@ -115,7 +115,7 @@ add_action( 'init', 'jpm_custom_smilies_init' );
 
 function jpm_convert_smilies_warning() {
 	echo '<div id="jpm-convert-smilies-warning" class="error"><p><strong>';
-	_e( 'Custom Smilies Directory needs your attenttion:', 'jpm_csd' );
+	_e( 'Custom Smilies Directory needs your attention:', 'jpm_csd' );
 	echo '</strong> ';
 	_e( '<code>/smilies/</code> directory not found in the current theme. You have to upload your new smilies to your theme directory for them to work!', 'jpm_csd' );
 	echo '</p></div>';
